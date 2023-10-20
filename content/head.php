@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato%7cUbuntu" rel="stylesheet"> 
     
     <!-- Edit the name of your style sheet - 'foo' is not a valid name!! -->
+    <link rel="stylesheet" href="theme/auto_complete.css">
     <link rel="stylesheet" href="theme/l3_data_style.css"> 
         <link rel="stylesheet" href="theme/font-awesome.min.css">
     

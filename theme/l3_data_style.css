@@ -137,6 +137,17 @@ h1, h2, h3, h4 {
     border: solid 1px #000;
     border-radius: 5px;
 }
+
+.no-results{
+    padding:5px;
+    background-color: #ffbbbb;
+    border: solid 1px #a40f0f;
+}
+
+.error{
+    color:#a40f0f;
+}
+
 /* ### Form / Search  Styling #### */
 
 form {
@@ -145,13 +156,12 @@ form {
 
 .search {
     background:#fff;
-    width: 75%;
+    width: 200px;
 }
 
 .submit::-moz-focus-inner { 
     border: 0;
 }
-
 
 .submit {
     font-family: FontAwesome, 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -168,18 +178,32 @@ form {
     padding: 10px;
 }
 
+.tools{
+    text-align: right;
+    padding-right: 20px;
+}
 
 input[type="submit"]:hover {
     background-color: #000;
+    color:#fff;
 }
 
+.admin-form{
+    max-width: 600px;
+    margin: auto;
+}
 
-input {
+.form-submit{
+    width:100%;
+}
+
+input, textarea {
     font-size: 14px;
     padding: 10px;
     display: inline-block;
     border: 1px solid #000;
-    box-sizing: border-box; 
+    box-sizing: border-box;
+    width:100%; 
 }
 
 
@@ -188,8 +212,13 @@ input {
     display: inline-block;
 }
 
+.quick-choose{
+    padding:10px;
+    border: solid 1px #000;
+}
+
 /* Rules for navigation on small screens */
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 1175px) {
     .linkwrapper{
     grid-template-columns: auto;
     grid-template-rows: auto;

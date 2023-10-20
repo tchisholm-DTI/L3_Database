@@ -1,60 +1,55 @@
 <?php
 
-// q = quotes table
-// a = author table
-// s = s1, s2, and s3 are subjects
+    // Retrieve search type ...
+    $search_type = clean_input($dbconnect, $_REQUEST['search']);
 
-$find_sql = "SELECT 
+    if($search_type == "all") {
+        $heading = "All Quotes";
+        $sql_conditions = "";
+    }
 
-q.*,
-a.*,
-s1.Subject AS Subject1,
-s2.Subject AS Subject2,
-s3.Subject AS Subject13,
+    elseif ($search_type == 'recent') {
+        $heading = "Recent Quotes";
+        $sql_conditions = "ORDER BY q.ID DESC LIMIT 10";
+    }
 
-FROM 
-quotes q
+    elseif ($search_type == 'random') {
+        $heading = "Random Quotes";
+        $sql_conditions = "ORDER BY RAND() LIMIT 10";
+    }
 
-JOIN author a ON a.Author_ID = q.Author_ID
-JOIN all_subjects s1 ON q.Subject1_ID = s1.Subject_ID
-JOIN all_subjects s2 ON q.Subject2_ID = s2.Subject_ID
-JOIN all_subjects s3 ON q.Subject3_ID = s3.Subject_ID
+    elseif ($search_type=="author") {
+        // Retrieve author ID
+        $author_ID = $_REQUEST['Author_ID'];
 
-";
-$find_query = mysqli_query($dbconnect, $find_sql);
-$find_rs = mysqli_fetch_assoc($find_query);
-$find_count = mysqli_num_rows($find_query);
+        $heading = "";
+        $heading_type = "author";
 
-?>
+        $sql_conditions = "WHERE q.Author_ID = $author_ID";
+    }
 
-<h2>All Results (<?php echo $find_count; ?>)</h2>
+    elseif ($search_type=="subject") {
+        // Retrieve subject
+        $subject_name = $_REQUEST['subject_name'];
 
-<?php
+        $heading = "";
+        $heading_type = "subject";
 
-while($find_rs = mysqli_fetch_assoc($find_query)){
-    $quote = $find_rs['Quote'];
+        $sql_conditions = "
+        WHERE 
+        s1.Subject LIKE '$subject_name'
+        OR s2.Subject LIKE '$subject_name'
+        OR s3.Subject LIKE '$subject_name'
 
-    $author_first = $find_rs['First'];
-    $author_middle = $find_rs['Middle'];
-    $author_last = $find_rs['Last'];
+        ";
+    }
 
-    // Put space before middle initial so if it's blank we don't have two spaces between the first and last names
-    $author_middle = " ".$author_middle;
+    else{
+        $heading = "No results test";
+        $sql_conditions = "WHERE q.ID = 1000";
+    }
 
+    include ("results.php")
 
-?>
-
-<div class="results">
-    <?php echo $quote; ?>
-
-    <p><i><?php echo $author_first.$author_middle." ".$author_last; ?></i></p>
-
-</div>
-
-<br />
-
-<?php
-
-}
-
-?>
+    ?>
+    
