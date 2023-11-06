@@ -56,6 +56,24 @@ function get_item_name($dbconnect, $table, $column, $ID)
 	return $find_rs;
 }
 
+// Get search ID
+function get_search_ID($dbconnect, $search_term)
+{
+	$find_sql = "SELECT * FROM all_subjects WHERE Subject LIKE '$search_term'";
+	$find_query = mysqli_query($dbconnect, $find_sql);
+	$find_rs = mysqli_fetch_assoc($find_query);
+
+	// Count results
+	$find_count = mysqli_num_rows($find_query);
+
+	if($find_count == 1) {
+		return $find_rs['Subject_ID'];
+	}
+	else{
+		return "no results";
+	}
+}
+
 // Function to get autocomplete in 'Add Quote' to work
 
 // entity is subject / full name of author
@@ -75,4 +93,23 @@ $all_items=json_encode($items);
 return $all_items;
     
 }
+
+// Delete Ghost Authors
+function delete_ghost($dbconnect, $authorID)
+{
+	// See if there are other quotes by that author
+	$check_author_sql = "SELECT * FROM `quotes` WHERE `Author_ID` = $authorID ";
+	$check_author_query = mysqli_query($dbconnect, $check_author_sql);
+
+	$count_author = mysqli_num_rows($check_author_query);
+
+	// If there are no quotes associated with the old author,
+	// we can delete the old author.
+	if ($count_author <=1) {
+		$delete_ghost = "DELETE FROM `author` WHERE `author` . `Author_ID` = $authorID ";
+		$delete_ghost_query = mysqli_query($dbconnect, $delete_ghost);
+		
+	}
+}
+
 ?>

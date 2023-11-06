@@ -114,6 +114,16 @@ h1, h2, h3, h4 {
     font-family: 'Ubuntu', sans-serif;
 }
 
+.important{
+    background-color: #ffb6b6;
+    padding: 10px;
+}
+
+.light-blue{
+    background-color: lightskyblue;
+    padding: 10px;
+}
+
 .sub_heading {
     font-family: 'Ubuntu', sans-serif;
     color: #593849; /* purple */
@@ -130,12 +140,19 @@ h1, h2, h3, h4 {
 }
 
 .tag{
-    background-color: bisque;
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
     border: solid 1px #000;
     border-radius: 5px;
+}
+
+.subject-tag{
+    background-color: bisque;
+}
+
+.white-tag{
+    background-color: #fff;
 }
 
 .no-results{

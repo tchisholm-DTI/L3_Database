@@ -41,9 +41,9 @@
 
                         ?>
 
-                        <a href="index.php?page=../admin/add_quote">Add Quote</a>
+                        <a href="index.php?page=../admin/addquote"><i class="fa fa-plus fa-2x"></i></a>
                         &nbsp; &nbsp;
-                        <a href="index.php?page=../admin/logout">Log Out</a>
+                        <a href="index.php?page=../admin/logout"><i class="fa fa-sign-out fa-2x"></i></a>
 
                         <?php
 
@@ -52,7 +52,7 @@
                 else {
 
                     ?>
-                        <a href="index.php?page=../admin/login">Log In</a>
+                        <a href="index.php?page=../admin/login"><i class="fa fa-sign-in fa-2x"></i></a>
                     <?php
 
 
